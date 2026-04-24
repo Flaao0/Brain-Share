@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block content %}
+<div class="product-card" style="max-width: 600px; margin: 20px auto">
+  <h2>Профиль студента</h2>
+
+  <p><strong>Логин:</strong> {{ user.username }}</p>
+  <p><strong>Email:</strong> {{ user.email }}</p>
+
+  <p><strong>Факультет:</strong> {{ user.studentprofile.faculty }}</p>
+  <p><strong>Курс:</strong> {{ user.studentprofile.course }}</p>
+
+  <div
+    style="
+      background: #fff0f5;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+    "
+  >
+    <p><strong>О себе:</strong></p>
+    <p><em>{{ user.studentprofile.bio }}</em></p>
+  </div>
+</div>
+{% endblock %}

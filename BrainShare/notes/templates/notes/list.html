@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block content %}
+<h2>База знаний BrainShare</h2>
+
+<div class="products-grid">
+  {% for item in notes %}
+  <div class="product-card">
+    <small style="color: #888">Предмет: {{ item.category.name }}</small>
+    <h3>{{ item.title }}</h3>
+    <p style="font-size: 14px; color: #555">
+      {{ item.content|truncatechars:100 }}
+    </p>
+    <hr style="border: 0; border-top: 1px solid #ffb6c1; margin: 10px 0" />
+    <small
+      >Автор: {{ item.author.username }} | {{ item.created_at|date:"d.m.Y"
+      }}</small
+    >
+  </div>
+  {% empty %}
+  <p>Конспектов пока нет. Будь первым, кто поделится знаниями!</p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<h2>Студенческие мемы</h2>
+
+<div class="products-grid">
+  {% for meme in memes %}
+  <div class="product-card" style="text-align: center">
+    <h3>{{ meme.title }}</h3>
+
+    <div
+      style="
+        margin: 15px 0;
+        background: #eee;
+        border-radius: 8px;
+        overflow: hidden;
+      "
+    >
+      <img
+        src="{% static meme.image_path %}"
+        alt="{{ meme.title }}"
+        style="max-width: 100%; display: block"
+      />
+    </div>
+
+    <div
+      style="display: flex; justify-content: space-between; align-items: center"
+    >
+      <span style="color: #ff1493; font-weight: bold">❤️ {{ meme.likes }}</span>
+      <small style="color: #888">от {{ meme.author.username }}</small>
+    </div>
+  </div>
+  {% empty %}
+  <p>Мемов пока нет, все готовятся к сессии...</p>
+  {% endfor %}
+</div>
+{% endblock %}

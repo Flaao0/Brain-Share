@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BrainShare</title>
+</head>
+<body>
+    <header>
+        <h1>BrainShare</h1>
+        <nav>
+            <a href="{% url 'notes:home' %}">Главная</a> | 
+            <a href="{% url 'notes:notes' %}">Список конспектов</a>
+        </nav>
+    </header>
+    <hr> <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <hr>
+    <footer>
+        <p>Панель управления BrainShare, 2026</p>
+    </footer>
+</body>
+</html>
