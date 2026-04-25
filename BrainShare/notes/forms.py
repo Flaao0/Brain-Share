@@ -4,7 +4,7 @@ from .models import Note, Comment
 class NoteForm(forms.ModelForm):
     class Meta:
         model = Note
-        fields = ['title', 'category', 'content']
+        fields = ['title', 'category', 'content', 'image_path']
 
     def clean_title(self):
         title = self.cleaned_data.get('title')

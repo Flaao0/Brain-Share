@@ -1,13 +1,29 @@
+{% load static %}
 <!doctype html>
 <html>
   <head>
     <title>BrainShare</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
-  <body>
+  <body class="{% if request.COOKIES.theme == 'dark' %}dark-theme{% else %}light-theme{% endif %}">
     <header>
       <h1>BrainShare</h1>
       <nav>
         <a href="{% url 'notes:note_list' %}">Главная</a>
+        |
+        <a href="{% url 'notes:notes' %}">Конспекты</a>
+        |
+        <a href="{% url 'mems:meme_feed' %}">Мемы</a>
+        |
+        <a href="{% url 'notes:history' %}">История</a>
+        |
+        <a href="{% url 'notes:toggle_theme' %}" style="margin-left: 8px">
+          {% if request.COOKIES.theme == 'dark' %}
+          Светлая тема
+          {% else %}
+          Тёмная тема
+          {% endif %}
+        </a>
         | {% if user.is_authenticated %}
         <a href="{% url 'notes:add_note' %}">Добавить конспект</a>
         |

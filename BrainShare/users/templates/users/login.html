@@ -58,6 +58,12 @@
         >Зарегистрироваться</a
       >
     </p>
+    <p style="margin-top: 5px; font-size: 14px">
+      Забыли пароль?
+      <a href="{% url 'users:password_reset' %}" style="color: #ff1493"
+        >Сбросить</a
+      >
+    </p>
   </div>
 </div>
 {% endblock %}

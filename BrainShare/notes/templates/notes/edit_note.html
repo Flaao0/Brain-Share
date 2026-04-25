@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block content %}
+<div class="product-card" style="max-width: 800px; margin: 20px auto">
+  <h2>Редактировать конспект</h2>
+
+  <form method="post">
+    {% csrf_token %} {{ form.as_p }}
+    <button
+      type="submit"
+      style="
+        background: #ffb6c1;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+      "
+    >
+      Сохранить
+    </button>
+    <a href="{% url 'notes:note_detail' note.pk %}" style="margin-left: 12px"
+      >Отмена</a
+    >
+  </form>
+</div>
+{% endblock %}

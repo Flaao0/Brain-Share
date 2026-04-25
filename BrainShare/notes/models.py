@@ -17,6 +17,7 @@ class Category(models.Model):
 class Note(models.Model):
     title = models.CharField('Заголовок конспекта', max_length=255)
     content = models.TextField('Текст конспекта')
+    image_path = models.CharField('Путь к картинке', max_length=255, blank=True)
     created_at = models.DateTimeField('Дата создания', auto_now_add=True)
     
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='notes', verbose_name='Предмет')

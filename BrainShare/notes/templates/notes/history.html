@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Недавно просмотренные конспекты</h2>
+
+<div class="products-grid">
+  {% for item in notes %}
+  <div class="product-card">
+    <h3><a href="{% url 'notes:note_detail' item.pk %}">{{ item.title }}</a></h3>
+    <small>Предмет: {{ item.category.name }}</small>
+  </div>
+  {% empty %}
+  <p>История пока пустая.</p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,6 +1,12 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 <h2>Студенческие мемы</h2>
 
+{% if user.is_authenticated %}
+<p>
+  <a href="{% url 'mems:add_meme' %}">Добавить мем</a>
+</p>
+{% endif %}
+
 <div class="products-grid">
   {% for meme in memes %}
   <div class="product-card" style="text-align: center">
@@ -27,6 +33,37 @@
       <span style="color: #ff1493; font-weight: bold">❤️ {{ meme.likes }}</span>
       <small style="color: #888">от {{ meme.author.username }}</small>
     </div>
+
+    {% if request.user.is_authenticated and request.user == meme.author %}
+    <div style="margin-top: 10px">
+      <a
+        href="{% url 'mems:edit_meme' meme.pk %}"
+        style="
+          text-decoration: none;
+          border: 1px solid #ffb6c1;
+          color: #ff1493;
+          padding: 5px 10px;
+          border-radius: 5px;
+          font-size: 14px;
+        "
+        >Редактировать</a
+      >
+      <a
+        href="{% url 'mems:delete_meme' meme.pk %}"
+        style="
+          text-decoration: none;
+          border: 1px solid #ff69b4;
+          background: #fff0f5;
+          color: #d1005a;
+          padding: 5px 10px;
+          border-radius: 5px;
+          font-size: 14px;
+          margin-left: 10px;
+        "
+        >Удалить</a
+      >
+    </div>
+    {% endif %}
   </div>
   {% empty %}
   <p>Мемов пока нет, все готовятся к сессии...</p>

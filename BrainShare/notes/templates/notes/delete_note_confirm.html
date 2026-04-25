@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block content %}
+<div class="product-card" style="max-width: 800px; margin: 20px auto">
+  <h2>Удалить конспект?</h2>
+  <p><b>{{ note.title }}</b></p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button
+      type="submit"
+      style="
+        background: #ff69b4;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        color: white;
+      "
+    >
+      Да, удалить
+    </button>
+    <a href="{% url 'notes:note_detail' note.pk %}" style="margin-left: 12px"
+      >Отмена</a
+    >
+  </form>
+</div>
+{% endblock %}

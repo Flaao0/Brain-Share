@@ -1,9 +1,49 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 <div class="product-card" style="max-width: 800px; margin: 20px auto">
   <h2>{{ note.title }}</h2>
+  {% if note.image_path %}
+  <div style="margin: 15px 0">
+    <img
+      src="{% static note.image_path %}"
+      alt="{{ note.title }}"
+      style="max-width: 300px; border-radius: 10px"
+    />
+  </div>
+  {% endif %}
   <small>Предмет: {{ note.category.name }}</small>
   <hr style="border: 1px solid #ffb6c1" />
   <p>{{ note.content }}</p>
+
+  {% if request.user.is_authenticated and request.user == note.author %}
+  <div style="margin: 10px 0">
+    <a
+      href="{% url 'notes:edit_note' note.pk %}"
+      style="
+        text-decoration: none;
+        border: 1px solid #ffb6c1;
+        color: #ff1493;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 14px;
+      "
+      >Редактировать</a
+    >
+    <a
+      href="{% url 'notes:delete_note' note.pk %}"
+      style="
+        text-decoration: none;
+        border: 1px solid #ff69b4;
+        background: #fff0f5;
+        color: #d1005a;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 14px;
+        margin-left: 10px;
+      "
+      >Удалить</a
+    >
+  </div>
+  {% endif %}
 
   <h3 style="margin-top: 40px">Комментарии:</h3>
 
