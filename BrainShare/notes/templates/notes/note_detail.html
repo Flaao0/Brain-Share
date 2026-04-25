@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% block content %}
+<div class="product-card" style="max-width: 800px; margin: 20px auto">
+  <h2>{{ note.title }}</h2>
+  <small>Предмет: {{ note.category.name }}</small>
+  <hr style="border: 1px solid #ffb6c1" />
+  <p>{{ note.content }}</p>
+
+  <h3 style="margin-top: 40px">Комментарии:</h3>
+
+  <div
+    style="
+      background: #fff0f5;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    "
+  >
+    <form method="post">
+      {% csrf_token %} {{ form.as_p }}
+      <button
+        type="submit"
+        style="
+          background: #ffb6c1;
+          border: none;
+          padding: 10px;
+          border-radius: 5px;
+          cursor: pointer;
+          font-weight: bold;
+        "
+      >
+        Отправить
+      </button>
+    </form>
+  </div>
+
+  {% for comment in comments %}
+  <div style="border-bottom: 1px solid #ddd; padding: 10px 0">
+    <p>{{ comment.text }}</p>
+    <small style="color: #888"
+      >{{ comment.created_at|date:"d M Y, H:i" }}</small
+    >
+  </div>
+  {% empty %}
+  <p>Пока нет комментариев. Будьте первым!</p>
+  {% endfor %}
+</div>
+{% endblock %}

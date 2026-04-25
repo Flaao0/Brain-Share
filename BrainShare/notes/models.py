@@ -30,3 +30,12 @@ class Note(models.Model):
 
     def __str__(self):
         return self.title
+    
+class Comment(models.Model):
+    # Связь с главной сущностью (Конспектом)
+    note = models.ForeignKey(Note, on_delete=models.CASCADE, related_name='comments')
+    text = models.TextField("Текст комментария")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Комментарий к {self.note.title}"
