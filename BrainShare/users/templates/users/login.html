@@ -1,0 +1,63 @@
+{% extends 'base.html' %} {% block content %}
+<div
+  class="login-container"
+  style="
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #ffb6c1;
+    border-radius: 10px;
+    background-color: #fffafb;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  "
+>
+  <h2 style="text-align: center; color: #ff1493">Вход в BrainShare</h2>
+  <p style="text-align: center; color: #888; font-size: 14px">
+    Рады видеть тебя снова!
+  </p>
+  <hr style="border: 0.5px solid #ffb6c1; margin-bottom: 20px" />
+
+  <form method="post">
+    {% csrf_token %}
+
+    <div class="form-fields" style="margin-bottom: 20px">{{ form.as_p }}</div>
+
+    <div style="text-align: center">
+      <button
+        type="submit"
+        style="
+          background: #ffb6c1;
+          border: none;
+          padding: 10px 30px;
+          border-radius: 5px;
+          cursor: pointer;
+          font-weight: bold;
+          font-size: 16px;
+          color: white;
+          transition: 0.3s;
+        "
+      >
+        Войти
+      </button>
+    </div>
+  </form>
+
+  <div
+    style="
+      text-align: center;
+      margin-top: 20px;
+      border-top: 1px solid #eee;
+      padding-top: 15px;
+    "
+  >
+    <p style="font-size: 14px; color: #555">
+      Еще нет аккаунта?
+      <a
+        href="{% url 'register' %}"
+        style="color: #ff1493; text-decoration: none; font-weight: bold"
+        >Зарегистрироваться</a
+      >
+    </p>
+  </div>
+</div>
+{% endblock %}

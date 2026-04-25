@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'notes.apps.NotesConfig',
     'communities.apps.CommunitiesConfig',
     'mems.apps.MemsConfig',
+    'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -126,3 +127,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static_dev"
 ]
+
+LOGIN_REDIRECT_URL = '/' # Куда кидать после входа
+LOGOUT_REDIRECT_URL = '/' # Куда кидать после выхода
+LOGIN_URL = 'login' # Имя URL страницы входа

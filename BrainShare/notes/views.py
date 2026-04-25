@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Note, Comment
 from django.contrib.auth.models import User
 from .forms import NoteForm, CommentForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -32,3 +33,20 @@ def note_detail_view(request, pk):
         form = CommentForm()
 
     return render(request, 'notes/note_detail.html', {'note': note, 'comments': comments, 'form': form})
+
+@login_required
+def add_note_view(request):
+    if request.method == 'POST':
+        form = NoteForm(request.POST)
+        if form.is_valid():
+            new_note = form.save(commit=False)
+            # ВМЕСТО заглушки ставим реального юзера:
+            new_note.author = request.user 
+            new_note.save()
+            return redirect('notes:note_list')
+        # Если форма невалидна, код пойдет дальше к render(request, ...) 
+        # и вернет форму с ошибками (Пункт 5 выполнен!)
+    else:
+        form = NoteForm()
+    
+    return render(request, 'notes/add_note.html', {'form': form})
